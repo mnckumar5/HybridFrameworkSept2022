@@ -22,98 +22,77 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebDriver;
 
-public class Utility
-{
-       
-    
-    
-	public static Alert waitforalert(WebDriver driver)
-	{
-	Alert alt=null;	
-	for (int i=0;i<15;i++)
-		
-	{
-		
-		try
+public class Utility {
+
+	public static Alert waitforalert(WebDriver driver) {
+		Alert alt = null;
+		for (int i = 0; i < 15; i++)
+
 		{
-			alt=driver.switchTo().alert();
-			
-		}catch(NoAlertPresentException e)
-		{
-			//System.out.println("Waiting for Alert");
-			waitforseconds(15);
-			
-		}
-		
-	}
-	return alt;
-	}
-	
-	
-	public static void waitforseconds(int seconds)
-	{
-	try 
-	{
-		Thread.sleep(seconds*1000);
-	}catch(InterruptedException e)
-	{
-		
-	}
-	}
-	
-	public static Alert waitforalert(WebDriver driver,int time)
-	
-	{
-		Alert alt=null;
-		for (int i=0;i<time;i++)
-		{
+
 			try {
-				alt=driver.switchTo().alert();
-			}catch(NoAlertPresentException e)
-			{
-				//System.out.println("Waiting for Alert");
+				alt = driver.switchTo().alert();
+
+			} catch (NoAlertPresentException e) {
+				// System.out.println("Waiting for Alert");
+				waitforseconds(15);
+
+			}
+
+		}
+		return alt;
+	}
+
+	public static void waitforseconds(int seconds) {
+		try {
+			Thread.sleep(seconds * 1000);
+		} catch (InterruptedException e) {
+
+		}
+	}
+
+	public static Alert waitforalert(WebDriver driver, int time)
+
+	{
+		Alert alt = null;
+		for (int i = 0; i < time; i++) {
+			try {
+				alt = driver.switchTo().alert();
+			} catch (NoAlertPresentException e) {
+				// System.out.println("Waiting for Alert");
 				waitforseconds(1);
 			}
 		}
-		
+
 		return alt;
-		
+
 	}
 
-	
-	
-	public static void captureScreenshot(WebDriver driver)
-	{
-		try 
-		{
-			FileHandler.copy(((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE), new File("./screenshots/Screenshot_"+getCurrentTime()+".png"));
-		} 
-		catch (IOException e) 
-		{
-			System.out.println("Something went wrong "+e.getMessage());
+	public static void captureScreenshot(WebDriver driver) {
+		try {
+			FileHandler.copy(((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE),
+					new File("./screenshots/Screenshot_" + getCurrentTime() + ".png"));
+		} catch (IOException e) {
+			System.out.println("Something went wrong " + e.getMessage());
 		}
 	}
-	
+
 	public static String getCurrentTime()
 
 	{
-		String date=new SimpleDateFormat("HHmmss_dd_MM_yyyy").format(new Date());
-		
+		String date = new SimpleDateFormat("HHmmss_dd_MM_yyyy").format(new Date());
+
 		return date;
 	}
 
-	
-	public static String captureScreenshotInBase64(WebDriver driver)
-	{
-	
-		TakesScreenshot ts=(TakesScreenshot)driver;
-		
-		String base64=ts.getScreenshotAs(OutputType.BASE64);
-		
+	public static String captureScreenshotInBase64(WebDriver driver) {
+
+		TakesScreenshot ts = (TakesScreenshot) driver;
+
+		String base64 = ts.getScreenshotAs(OutputType.BASE64);
+
 		return base64;
-		
+
 	}
 
-	
-	
 }

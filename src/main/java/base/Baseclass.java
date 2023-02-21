@@ -9,26 +9,23 @@ import org.testng.annotations.BeforeMethod;
 import Browserfactory.Browserfactory;
 import dataprovider.ConfigReader;
 
-public class Baseclass 
-
+public class Baseclass
 
 {
 	public WebDriver driver;
+
 	@BeforeMethod
-	public void setupbrowser()
-	{
+	public void setupbrowser() {
 		// 1--- Does not suite for Cross Browser---
 		System.out.println("Log:Info - Setting up browser");
-		driver=Browserfactory.startBrowser(ConfigReader.getProperty("browser"), ConfigReader.getProperty("url"));
+		driver = Browserfactory.startBrowser(ConfigReader.getProperty("browser"), ConfigReader.getProperty("url"));
 		System.out.println("Log:Info - Application is up and running");
 	}
 
 	@AfterMethod
-	public void closebrowser()
-	{
+	public void closebrowser() {
 		driver.quit();
 		System.out.println("Log:Info - Closing the Browser and application");
 	}
-	
-	
+
 }

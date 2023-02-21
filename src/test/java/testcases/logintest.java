@@ -13,14 +13,11 @@ import pages.loginpage;
 public class logintest extends Baseclass
 
 {
-    @Test(dataProvider="Logindetails",dataProviderClass=CustomDataProvider.class)
-	public void logintoapplication(String uname,String pwd)
-	{
-		
-		
-		loginpage login=new  loginpage(driver);
+	@Test(dataProvider = "Logindetails", dataProviderClass = CustomDataProvider.class)
+	public void logintoapplication(String uname, String pwd) {
+
+		loginpage login = new loginpage(driver);
 		login.logintoapplication(uname, pwd);
-		
-		
+
 	}
 }
