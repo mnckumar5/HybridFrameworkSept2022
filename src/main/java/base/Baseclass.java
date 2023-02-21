@@ -26,6 +26,7 @@ public class Baseclass
 	public void closebrowser() {
 		driver.quit();
 		System.out.println("Log:Info - Closing the Browser and application");
+		System.out.println("Log:Info - Closing the Browser and application22222");
 	}
 
 }
