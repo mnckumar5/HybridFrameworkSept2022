@@ -5,8 +5,7 @@ import org.testng.annotations.DataProvider;
 public class CustomDataProvider {
 
 	@DataProvider(name = "Logindetails")
-	public static Object[][] getData() 
-	{
+	public static Object[][] getData() {
 		Object[][] arr = Excelreadercorrect.getDataFromSheet("Sheet2");
 		return arr;
 	}

@@ -14,48 +14,42 @@ import Helper.Utility;
 
 public class ExtentTestNGITestListener implements ITestListener {
 
-	ExtentReports extent=ExtentManager.getInstance();
-	
-	ThreadLocal<ExtentTest> parentTest=new ThreadLocal<ExtentTest>();
-	
-	
-	public void onTestStart(ITestResult result) 
-	{
-		ExtentTest extentTest=extent.createTest(result.getMethod().getMethodName());
-	
+	ExtentReports extent = ExtentManager.getInstance();
+
+	ThreadLocal<ExtentTest> parentTest = new ThreadLocal<ExtentTest>();
+
+	public void onTestStart(ITestResult result) {
+		ExtentTest extentTest = extent.createTest(result.getMethod().getMethodName());
+
 		parentTest.set(extentTest);
 	}
-	
-	
+
 	public void onTestSuccess(ITestResult result) {
-	   
-		WebDriver driver=Browserfactory.getBrowserInstance();
-		
-		String base64=Utility.captureScreenshotInBase64(driver);
-		
-		parentTest.get().pass("Test Passed",MediaEntityBuilder.createScreenCaptureFromBase64String(base64).build());
-	  }
-	
-	
-	public void onTestFailure(ITestResult result) 
-	{
-		WebDriver driver=Browserfactory.getBrowserInstance();
-		
-		String base64=Utility.captureScreenshotInBase64(driver);
-		
-		parentTest.get().fail("Test Failed "+result.getThrowable().getMessage(),MediaEntityBuilder.createScreenCaptureFromBase64String(base64).build());
-	   
-	  }
-	
-	
+
+		WebDriver driver = Browserfactory.getBrowserInstance();
+
+		String base64 = Utility.captureScreenshotInBase64(driver);
+
+		parentTest.get().pass("Test Passed", MediaEntityBuilder.createScreenCaptureFromBase64String(base64).build());
+	}
+
+	public void onTestFailure(ITestResult result) {
+		WebDriver driver = Browserfactory.getBrowserInstance();
+
+		String base64 = Utility.captureScreenshotInBase64(driver);
+
+		parentTest.get().fail("Test Failed " + result.getThrowable().getMessage(),
+				MediaEntityBuilder.createScreenCaptureFromBase64String(base64).build());
+
+	}
+
 	public void onTestSkipped(ITestResult result) {
-		parentTest.get().skip("Test Skipped "+result.getThrowable().getMessage());
-	   
-	  }
-	
-	
-	public  void onFinish(ITestContext context) {
+		parentTest.get().skip("Test Skipped " + result.getThrowable().getMessage());
+
+	}
+
+	public void onFinish(ITestContext context) {
 		extent.flush();
-	    
-	  }
+
+	}
 }

@@ -1,11 +1,9 @@
 package testcases;
 
-public class Createcategory 
-{
-	
-	public void t21()
-	{
-		
+public class Createcategory {
+
+	public void t21() {
+
 	}
 
 }
