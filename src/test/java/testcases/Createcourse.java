@@ -13,5 +13,15 @@ public class Createcourse extends Baseclass
 	{
 		
 	}
+	
+	public void t1()
+	{
+		
+	}
+	
+	public void t2()
+	{
+		
+	}
 
 }
