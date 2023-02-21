@@ -24,4 +24,9 @@ public class Createcourse extends Baseclass
 		
 	}
 
+	public void test324()
+	{
+		
+		
+	}
 }
